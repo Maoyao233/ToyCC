@@ -48,9 +48,9 @@ int main()
 
 ## 编译
 
-推荐使用[CMake](https://cmake.org/)与[vcpkg](https://github.com/microsoft/vcpkg)进行项目管理。
+推荐在Linux或MacOS下编译本项目。如果在Windows下编译，需要从源码编译LLVM，耗时较长且存在失败的可能性。
 
-### 从源码编译LLVM
+推荐使用[CMake](https://cmake.org/)与[vcpkg](https://github.com/microsoft/vcpkg)进行项目管理。
 
 若未安装`vcpkg`，首先应安装`vcpkg`：
 
@@ -61,7 +61,9 @@ cd vcpkg
 sh bootstrap-vcpkg.sh
 ```
 Windows:
-```cmd
+
+在`powershell`内执行：
+```powershell
 git clone https://github.com/microsoft/vcpkg.git
 cd vcpkg
 .\bootstrap-vcpkg.bat
@@ -70,12 +72,24 @@ cd vcpkg
 然后通过`vcpkg`安装本项目的依赖：
 ```bash
 ./vcpkg install nlohmann-json
-./vcpkg install llvm
 ```
 
-注意，由于`vcpkg`安装依赖的方式为从源码编译，因此此过程可能非常漫长，请耐心等待。如果只需要在Release模式下编译本项目，可以选择使用LLVM的Release版本（仅Linux下可，Windows下仍然只能通过源码编译）
+LLVM发布的Windows安装版本中缺少本项目依赖的头文件与库文件，因此必须从源码编译。可以时候用`vcpkg`完成：
+```powershell
+.\vcpkg install llvm[core,target-x86]
+```
 
-在项目中应用`vcpkg`的方法参考[官方文档](https://github.com/microsoft/vcpkg/blob/master/README_zh_CN.md#%E5%9C%A8-cmake-%E4%B8%AD%E4%BD%BF%E7%94%A8-vcpkg)，推荐将`vcpkg`作为项目子模块，即在本项目的 [CMakeLists.txt](CMakeLists.txt) 中的`project()`调用前加入以下内容：
+注意，此过程可能非常漫长，请耐心等待。同时，Debug模式编译对内存的需求量很大，配置较差的电脑下可能会内存耗尽而编译失败。此时可以考虑[手动从源码编译](https://llvm.org/docs/GettingStarted.html)。
+
+如果在Linux或MacOS下，可以直接使用LLVM的pre-built版本从而省略这一复杂艰难的过程。例如在`Ubuntu`下，只需使用：
+
+```bash
+sudo apt install llvm
+```
+
+即可使用。
+
+在项目中应用`vcpkg`的方法请参考[官方文档](https://github.com/microsoft/vcpkg/blob/master/README_zh_CN.md#%E5%9C%A8-cmake-%E4%B8%AD%E4%BD%BF%E7%94%A8-vcpkg)，推荐将`vcpkg`作为项目子模块，即在本项目的 [CMakeLists.txt](CMakeLists.txt) 中的`project()`调用前加入以下内容：
 
 ```CMake
 set(CMAKE_TOOLCHAIN_FILE path/to/vcpkg/scripts/buildsystems/vcpkg.cmake
