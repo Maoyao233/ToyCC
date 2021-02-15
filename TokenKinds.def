@@ -1,0 +1,159 @@
+#ifndef TOK
+#define TOK(X)
+#endif
+#ifndef PUNCTUATOR
+#define PUNCTUATOR(X,Y) TOK(X)
+#endif
+#ifndef KEYWORD
+#define KEYWORD(X,Y) TOK(kw_ ## X)
+#endif
+
+
+// These define members of the tok::* namespace.
+
+TOK(unknown)             // Not a token.
+//TOK(eof)                 // End of file，由于本次编译器的C-like语言以#显式结束，因此定义在PUNCTUATOR中
+
+
+// C99 6.4.9: Comments.
+TOK(s_comment)             // Comment
+TOK(lm_comment)
+TOK(rm_comment)
+
+// C99 6.4.2: Identifiers.
+TOK(identifier)          // abcde123
+//TOK(raw_identifier)      // Used only in raw lexing mode.
+
+// C99 6.4.4.1: Integer Constants
+// C99 6.4.4.2: Floating Constants （暂不支持）
+TOK(numeric_constant)    // 0x123
+
+// C99 6.4.4: Character Constants
+// TOK(char_constant)       // 'a'
+//TOK(wide_char_constant)  // L'b'
+
+// C++17 Character Constants
+//TOK(utf8_char_constant)  // u8'a'
+
+// C++11 Character Constants
+//TOK(utf16_char_constant) // u'a'
+//TOK(utf32_char_constant) // U'a'
+
+// C99 6.4.5: String Literals.
+//TOK(string_literal)      // "foo"
+//TOK(wide_string_literal) // L"foo"
+
+// C11 6.4.7: Header Names
+//TOK(header_name)         // <foo>, or "foo" lexed as a header-name
+
+// C++11 String Literals.
+//TOK(utf8_string_literal) // u8"foo"
+//TOK(utf16_string_literal)// u"foo"
+//TOK(utf32_string_literal)// U"foo"
+
+// C99 6.4.6: Punctuators.
+//PUNCTUATOR(l_square,            "[")
+//PUNCTUATOR(r_square,            "]")
+PUNCTUATOR(eof,                 "#")
+PUNCTUATOR(l_paren,             "(")
+PUNCTUATOR(r_paren,             ")")
+PUNCTUATOR(l_brace,             "{")
+PUNCTUATOR(r_brace,             "}")
+//PUNCTUATOR(period,              ".")
+//PUNCTUATOR(ellipsis,            "...")
+PUNCTUATOR(amp,                 "&")
+PUNCTUATOR(ampamp,              "&&")
+PUNCTUATOR(ampequal,            "&=")
+PUNCTUATOR(star,                "*")
+PUNCTUATOR(starequal,           "*=")
+PUNCTUATOR(plus,                "+")
+PUNCTUATOR(plusplus,            "++")
+PUNCTUATOR(plusequal,           "+=")
+PUNCTUATOR(minus,               "-")
+//PUNCTUATOR(arrow,               "->")
+PUNCTUATOR(minusminus,          "--")
+PUNCTUATOR(minusequal,          "-=")
+PUNCTUATOR(tilde,               "~")
+PUNCTUATOR(exclaim,             "!")
+PUNCTUATOR(exclaimequal,        "!=")
+PUNCTUATOR(slash,               "/")
+PUNCTUATOR(slashequal,          "/=")
+PUNCTUATOR(percent,             "%")
+PUNCTUATOR(percentequal,        "%=")
+PUNCTUATOR(less,                "<")
+PUNCTUATOR(lessless,            "<<")
+PUNCTUATOR(lessequal,           "<=")
+PUNCTUATOR(lesslessequal,       "<<=")
+//PUNCTUATOR(spaceship,           "<=>")
+PUNCTUATOR(greater,             ">")
+PUNCTUATOR(greatergreater,      ">>")
+PUNCTUATOR(greaterequal,        ">=")
+PUNCTUATOR(greatergreaterequal, ">>=")
+PUNCTUATOR(caret,               "^")
+PUNCTUATOR(caretequal,          "^=")
+PUNCTUATOR(pipe,                "|")
+PUNCTUATOR(pipepipe,            "||")
+PUNCTUATOR(pipeequal,           "|=")
+//PUNCTUATOR(question,            "?")
+//PUNCTUATOR(colon,               ":")
+PUNCTUATOR(semi,                ";")
+PUNCTUATOR(equal,               "=")
+PUNCTUATOR(equalequal,          "==")
+PUNCTUATOR(comma,               ",")
+//PUNCTUATOR(hash,                "#")
+//PUNCTUATOR(hashhash,            "##")
+//PUNCTUATOR(hashat,              "#@")
+
+// C++ Support
+//PUNCTUATOR(periodstar,          ".*")
+//PUNCTUATOR(arrowstar,           "->*")
+//PUNCTUATOR(coloncolon,          "::")
+
+//KEYWORD(auto                        , KEYALL)
+//KEYWORD(break                       , KEYALL)
+//KEYWORD(case                        , KEYALL)
+//KEYWORD(char                        , KEYALL)
+//KEYWORD(const                       , KEYALL)
+//KEYWORD(continue                    , KEYALL)
+//KEYWORD(default                     , KEYALL)
+//KEYWORD(do                          , KEYALL)
+//KEYWORD(double                      , KEYALL)
+KEYWORD(else                        , KEYALL)
+//KEYWORD(enum                        , KEYALL)
+//KEYWORD(extern                      , KEYALL)
+//KEYWORD(float                       , KEYALL)
+//KEYWORD(for                         , KEYALL)
+//KEYWORD(goto                        , KEYALL)
+KEYWORD(if                          , KEYALL)
+//KEYWORD(inline                      , KEYC99|KEYCXX|KEYGNU)
+KEYWORD(int                         , KEYALL)
+//KEYWORD(_ExtInt                     , KEYALL)
+//KEYWORD(long                        , KEYALL)
+//KEYWORD(register                    , KEYALL)
+//KEYWORD(restrict                    , KEYC99)
+KEYWORD(return                      , KEYALL)
+//KEYWORD(short                       , KEYALL)
+//KEYWORD(signed                      , KEYALL)
+//UNARY_EXPR_OR_TYPE_TRAIT(sizeof, SizeOf, KEYALL)
+//KEYWORD(static                      , KEYALL)
+//KEYWORD(struct                      , KEYALL)
+//KEYWORD(switch                      , KEYALL)
+//KEYWORD(typedef                     , KEYALL)
+//KEYWORD(union                       , KEYALL)
+//KEYWORD(unsigned                    , KEYALL)
+KEYWORD(void                        , KEYALL)
+//KEYWORD(volatile                    , KEYALL)
+KEYWORD(while                       , KEYALL)
+//KEYWORD(_Alignas                    , KEYALL)
+//KEYWORD(_Alignof                    , KEYALL)
+//KEYWORD(_Atomic                     , KEYALL|KEYNOOPENCL)
+//KEYWORD(_Bool                       , KEYNOCXX)
+//KEYWORD(_Complex                    , KEYALL)
+//KEYWORD(_Generic                    , KEYALL)
+//KEYWORD(_Imaginary                  , KEYALL)
+//KEYWORD(_Noreturn                   , KEYALL)
+//KEYWORD(_Static_assert              , KEYALL)
+//KEYWORD(_Thread_local               , KEYALL)
+//KEYWORD(__func__                    , KEYALL)
+//KEYWORD(__objc_yes                  , KEYALL)
+//KEYWORD(__objc_no                   , KEYALL)

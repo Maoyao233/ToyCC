@@ -1,0 +1,78 @@
+
+#ifndef BINARY_OPERATION
+#  define BINARY_OPERATION(Name, Spelling)
+#endif
+
+#ifndef UNARY_OPERATION
+#  define UNARY_OPERATION(Name, Spelling)
+#endif
+
+// [C++ 5.5] Pointer-to-member operators.
+// BINARY_OPERATION(PtrMemD, ".*")
+// BINARY_OPERATION(PtrMemI, "->*")
+// [C99 6.5.5] Multiplicative operators.
+BINARY_OPERATION(Mul, "*")
+BINARY_OPERATION(Div, "/")
+BINARY_OPERATION(Rem, "%")
+// [C99 6.5.6] Additive operators.
+BINARY_OPERATION(Add, "+")
+BINARY_OPERATION(Sub, "-")
+// [C99 6.5.7] Bitwise shift operators.
+BINARY_OPERATION(Shl, "<<")
+BINARY_OPERATION(Shr, ">>")
+// C++20 [expr.spaceship] Three-way comparison operator.
+// BINARY_OPERATION(Cmp, "<=>")
+// [C99 6.5.8] Relational operators.
+BINARY_OPERATION(LT, "<")
+BINARY_OPERATION(GT, ">")
+BINARY_OPERATION(LE, "<=")
+BINARY_OPERATION(GE, ">=")
+// [C99 6.5.9] Equality operators.
+BINARY_OPERATION(EQ, "==")
+BINARY_OPERATION(NE, "!=")
+// [C99 6.5.10] Bitwise AND operator.
+BINARY_OPERATION(And, "&")
+// [C99 6.5.11] Bitwise XOR operator.
+BINARY_OPERATION(Xor, "^")
+// [C99 6.5.12] Bitwise OR operator.
+BINARY_OPERATION(Or, "|")
+// [C99 6.5.13] Logical AND operator.
+BINARY_OPERATION(LAnd, "&&")
+// [C99 6.5.14] Logical OR operator.
+BINARY_OPERATION(LOr, "||")
+// [C99 6.5.16] Assignment operators.
+BINARY_OPERATION(Assign, "=")
+BINARY_OPERATION(MulAssign, "*=")
+BINARY_OPERATION(DivAssign, "/=")
+BINARY_OPERATION(RemAssign, "%=")
+BINARY_OPERATION(AddAssign, "+=")
+BINARY_OPERATION(SubAssign, "-=")
+BINARY_OPERATION(ShlAssign, "<<=")
+BINARY_OPERATION(ShrAssign, ">>=")
+BINARY_OPERATION(AndAssign, "&=")
+BINARY_OPERATION(XorAssign, "^=")
+BINARY_OPERATION(OrAssign, "|=")
+// [C99 6.5.17] Comma operator.
+// BINARY_OPERATION(Comma, ",")
+
+
+//===- Unary Operations ---------------------------------------------------===//
+
+// [C99 6.5.2.4] Postfix increment and decrement
+UNARY_OPERATION(PostInc, "++")
+UNARY_OPERATION(PostDec, "--")
+// [C99 6.5.3.1] Prefix increment and decrement
+UNARY_OPERATION(PreInc, "++")
+UNARY_OPERATION(PreDec, "--")
+// [C99 6.5.3.2] Address and indirection
+// UNARY_OPERATION(AddrOf, "&")
+// UNARY_OPERATION(Deref, "*")
+// [C99 6.5.3.3] Unary arithmetic
+UNARY_OPERATION(Plus, "+")
+UNARY_OPERATION(Minus, "-")
+UNARY_OPERATION(Not, "~")
+UNARY_OPERATION(LNot, "!")
+
+
+#undef BINARY_OPERATION
+#undef UNARY_OPERATION
