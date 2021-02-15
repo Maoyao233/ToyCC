@@ -1,7 +1,5 @@
 # ToyCC
 
-[TOC]
-
 ## 项目简介
 
 本项目来自[Maoyao233](https://github.com/Maoyao233)，[lhl322001](https://github.com/lhl322001)，[Amazonite](https://gitee.com/amazonite)合作完成的同济大学编译原理（CS100395）课程大作业的后端部分，针对C语言的一个子集，实现了简易的编译器前端，包括词法分析、语法分析、语义分析与中间代码生成步骤。程序可以生成`LLVM IR`，也可以单独演示词法分析部分或以json格式给出抽象语法树（AST）。完整大作业前端使用`electron`实现，主要为编译结果的可视化。
