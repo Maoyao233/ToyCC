@@ -1,7 +1,11 @@
 #include <iostream>
 #include <fstream>
 #include <cstring>
+
+#pragma warning(push, 0)
 #include "llvm/Support/CommandLine.h"
+#pragma warning(pop)
+
 #include "lexer.h"
 #include "Parser.h"
 #include "CodeGenerator.h"

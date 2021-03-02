@@ -1,4 +1,5 @@
 #pragma once
+#pragma warning(push, 0)
 #include "nlohmann/json.hpp"
 #include "llvm/ADT/APFloat.h"
 #include "llvm/ADT/STLExtras.h"
@@ -11,6 +12,7 @@
 #include "llvm/IR/Module.h"
 #include "llvm/IR/Type.h"
 #include "llvm/IR/Verifier.h"
+#pragma warning(pop)
 
 using namespace llvm;
 
