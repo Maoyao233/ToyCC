@@ -6,7 +6,7 @@ project(ToyCC VERSION 0.1.0)
 #enable_testing()
 
 add_executable(tcc 
-    Codegenerator.cpp
+    CodeGenerator.cpp
     Decl.cpp
     Expr.cpp
     lexer.cpp
@@ -25,7 +25,7 @@ message(STATUS "Using LLVMConfig.cmake in: ${LLVM_DIR}")
 add_definitions(${LLVM_DEFINITIONS})
 
 target_include_directories(tcc
-    PUBLIC
+    SYSTEM PUBLIC
         ${LLVM_INCLUDE_DIRS}
 )
 
